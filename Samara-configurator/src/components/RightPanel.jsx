@@ -25,7 +25,7 @@ const RightPanel = ({
   onDeckChange
 }) => {
   return (
-    <div className="px-10 pt-[36px] pb-12 md:px-[15%] xl:px-[27.5%] md:pt-[80px] md:pb-16 flex flex-col gap-12 w-full mx-auto">
+    <div className=" px-10 pt-[36px] pb-12 md:px-[15%] xl:px-[27.5%] md:pt-[80px] md:pb-16 flex flex-col gap-12 w-full mx-auto">
       {/* Title Section (Desktop Only in this panel) */}
       <div className="hidden md:block">
         <TitleSection />
@@ -40,7 +40,7 @@ const RightPanel = ({
 
       {/* Cladding Color */}
       <section className="flex flex-col gap-6">
-        <h3 className="text-xl font-normal tracking-tight">
+        <h3 className="select-none text-xl font-normal tracking-tight">
           Choose your Cladding
         </h3>
         <OptionCard

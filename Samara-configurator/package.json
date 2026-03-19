@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "npm run build && aws s3 rm s3://base-habitat/ --recursive && aws s3 cp ./dist s3://base-habitat/ --recursive --acl public-read && aws cloudfront create-invalidation --distribution-id E25GW37QHV6BO3 --paths \"/*\"",
-    "deploy2": "npm run build && aws s3 sync ./dist s3://merge-bucket-demo/client_A/ --delete && aws cloudfront create-invalidation --distribution-id E2982IGZBDE88I --paths \"/client_A/*\""
-
+    "deploy2": "npm run build && aws s3 sync ./dist s3://merge-bucket-demo/basehabitat/ --delete --exclude \"plus/*\" --acl public-read && aws cloudfront create-invalidation --distribution-id E2982IGZBDE88I --paths \"/basehabitat\" \"/basehabitat/*\""
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

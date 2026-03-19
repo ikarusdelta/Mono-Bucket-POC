@@ -13,5 +13,5 @@ export default defineConfig({
       'nonacutely-incised-catherine.ngrok-free.dev'
     ]
   },
-  base: '/client_A/'
+  base: '/basehabitat/'
 })

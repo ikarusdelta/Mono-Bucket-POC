@@ -9,7 +9,7 @@ const App = () => {
   const [viewIndex, setViewIndex] = useState(0);
 
   // Configuration state.
-  const [selectedColor, setSelectedColor] = useState('light'); // 'light' or 'dark'
+  const [selectedColor, setSelectedColor] = useState('dark'); // 'light' or 'dark'
   const [selectedBed, setSelectedBed] = useState('normal');     // 'normal' or 'bunk'
   const [selectedCabinet, setSelectedCabinet] = useState('stripped'); // 'stripped' or 'full'
   const [selectedLayout, setSelectedLayout] = useState('base1'); // 'base1' or 'base1plus'
