@@ -44,7 +44,7 @@ const RightPanel = ({
           Choose your Cladding
         </h3>
         <OptionCard
-          title="Range"
+          title="Ranger"
           subtitle="Dark wood, Dark roof and wooden windows"
           swatchColor="#1c1515"
           selected={config.selectedColor === "dark"}
@@ -82,20 +82,20 @@ const RightPanel = ({
       {/* Bed Type */}
       <section className="flex flex-col gap-6">
         <h3 className="text-xl font-normal tracking-tight">
-          Choose your Bed Type
+         Mezzanine upgrades
         </h3>
         <div className="flex flex-col gap-4">
           <OptionCard
-            title="Normal Bed"
-            subtitle="Standard single bed"
-            selected={config.selectedBed === "normal"}
-            onClick={() => onBedChange("normal")}
+            title=" King Size Bed"
+            subtitle="King size comfort"
+            selected={config.selectedBed === "Mezzanine_king"}
+            onClick={() => onBedChange("Mezzanine_king")}
           />
           <OptionCard
-            title="Bunk Bed"
-            subtitle="Space-saving bunk bed"
-            selected={config.selectedBed === "bunk"}
-            onClick={() => onBedChange("bunk")}
+            title="Base Bunk Bed"
+            subtitle="1 Double bed and 1 single bed & extra play area"
+            selected={config.selectedBed === "Mezzanine_Bunk"}
+            onClick={() => onBedChange("Mezzanine_Bunk")}
           />
         </div>
       </section>

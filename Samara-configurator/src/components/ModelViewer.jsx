@@ -84,17 +84,22 @@ function CameraHandler({
   useFrame((state, delta) => {
     if (!controlsRef.current) return;
 
+    // console.log(
+    //   `Camera — polar: ${controlsRef.current.getPolarAngle().toFixed(3)}, azimuth: ${controlsRef.current.getAzimuthalAngle().toFixed(3)}, pos: (${state.camera.position.x.toFixed(2)}, ${state.camera.position.y.toFixed(2)}, ${state.camera.position.z.toFixed(2)})`
+    // );
+
     if (isTransitioning.current) {
       let targetAzimuth, targetPolar;
       const targetCenter = new THREE.Vector3(0, 0, 0);
 
       if (viewMode === "interior") {
-        targetAzimuth = controlsRef.current.getAzimuthalAngle();
-        targetPolar = 0.05;
+        targetAzimuth = -0.936;
+        targetPolar = 0.566;
       } else {
         targetAzimuth = VIEWPOINTS_AZIMUTH[viewIndex];
         targetPolar = Math.PI * 0.35;
       }
+      // Camera — polar: 0.629, azimuth: -0.775, pos: (-15.60, 30.64, 15.92)
 
       const currentAzimuth = controlsRef.current.getAzimuthalAngle();
       const currentPolar = controlsRef.current.getPolarAngle();
@@ -111,7 +116,7 @@ function CameraHandler({
       if (
         viewMode === "interior" &&
         !overheadFired.current &&
-        currentPolar < 0.35
+        currentPolar < Math.PI * 0.25
       ) {
         overheadFired.current = true;
         onCameraOverhead?.();
@@ -153,7 +158,7 @@ function CameraHandler({
       enablePan={true}
       screenSpacePanning={true}
       minPolarAngle={viewMode === "interior" ? 0.01 : (10 * Math.PI) / 180}
-      maxPolarAngle={viewMode === "interior" ? Math.PI * 0.2 : Math.PI * 0.45}
+      maxPolarAngle={viewMode === "interior" ? Math.PI * 0.48 : Math.PI * 0.489}
       minDistance={distance}
       maxDistance={distance}
       onStart={() => {
@@ -222,8 +227,8 @@ const MODEL_URLS = {
     dark: `${import.meta.env.BASE_URL}models/newmodels/Black_Roof.glb`,
   },
   bed: {
-    normal: `${import.meta.env.BASE_URL}models/newmodels/Normal_Bed.glb`,
-    bunk: `${import.meta.env.BASE_URL}models/newmodels/Bunk_Bed.glb`,
+    Mezzanine_king: `${import.meta.env.BASE_URL}models/newmodels/Mezzanine King.glb`,
+    Mezzanine_Bunk: `${import.meta.env.BASE_URL}models/newmodels/Mezzanine Bunk.glb`,
   },
   kitchen: `${import.meta.env.BASE_URL}models/newmodels/Kitchen.glb`,
   cabinetDoor: `${import.meta.env.BASE_URL}models/newmodels/Kitchen_Cabinet_Door.glb`,
@@ -248,7 +253,7 @@ const SceneContent = ({
     MODEL_URLS.base[config.selectedColor] || MODEL_URLS.base.light;
   const roofUrl =
     MODEL_URLS.roof[config.selectedColor] || MODEL_URLS.roof.light;
-  const bedUrl = MODEL_URLS.bed[config.selectedBed] || MODEL_URLS.bed.normal;
+  const bedUrl = MODEL_URLS.bed[config.selectedBed] || MODEL_URLS.bed.Mezzanine_king;
 
   // Step 1: On model load, measure, cache size, and enable casting shadows on all meshes.
   const handleModelLoaded = useMemo(
@@ -317,6 +322,7 @@ const SceneContent = ({
 
   return (
     <Suspense fallback={null}>
+      {/* <group rotation={[0, Math.PI / 6, 0]}> */}
       <Center key="main-center">
         {/* Base structure — swaps by color */}
         <Model key={baseUrl} url={baseUrl} onLoaded={handleModelLoaded} />
@@ -352,6 +358,7 @@ const SceneContent = ({
           <Model url={MODEL_URLS.deck} onLoaded={enableShadows} />
         )}
       </Center>
+      {/* </group> */}
 
       <ContactShadows
         position={[0, -modelHeight / 2 - 0.01, 0]}
@@ -409,7 +416,6 @@ const ModelViewer = ({ viewIndex = 0, viewMode = "exterior", config = {} }) => {
             fov={17}
             near={0.1}
             far={2000}
-            position={[30, 25, 30]}
           />
 
           <ambientLight intensity={0.7} />

@@ -10,7 +10,7 @@ const App = () => {
 
   // Configuration state.
   const [selectedColor, setSelectedColor] = useState('dark'); // 'light' or 'dark'
-  const [selectedBed, setSelectedBed] = useState('normal');     // 'normal' or 'bunk'
+  const [selectedBed, setSelectedBed] = useState('Mezzanine_Bunk');     // 'Mezzanine Bunk' or 'Mezzanine Bunk'
   const [selectedCabinet, setSelectedCabinet] = useState('stripped'); // 'stripped' or 'full'
   const [selectedLayout, setSelectedLayout] = useState('base1'); // 'base1' or 'base1plus'
   //TODO: add wooden deck state
